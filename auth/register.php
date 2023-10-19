@@ -1,5 +1,7 @@
 <?php
 include_once('app/User.php');
+include_once('guest.php');
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $user = new User();
     $user->name = $_POST['name'];
@@ -26,14 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </head>
 
 <body>
-
     <div class="container">
-
         <div class="row justify-content-center">
-
             <div class="col-sm-6 pt-4">
                 <h2>Register form</h2>
-
                 <form action="register.php" method="POST">
                     <div class="form-group">
                         <label for="name">Name:</label>
@@ -57,9 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </form>
             </div>
         </div>
-
     </div>
-
 </body>
 
 </html>

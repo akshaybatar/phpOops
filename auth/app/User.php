@@ -11,6 +11,17 @@ class User extends Database
 
     public function register()
     {
+
+        $query = "SELECT * FROM users WHERE email =:email";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            return false;
+        }
+
+
         $query = "INSERT INTO users (name,email,password) VALUES(:name,:email,:password)";
         $stmt = $this->conn->prepare($query);
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
@@ -32,6 +43,8 @@ class User extends Database
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row && password_verify($this->password, $row['password'])) {
+            $this->id = $row['id'];
+            $this->name = $row['name'];
             return true;
         } else {
             return false;

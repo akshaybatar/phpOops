@@ -1,11 +1,17 @@
 <?php
+session_start();
+include_once('guest.php');
 include_once('app/User.php');
+$error='';
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $user = new User();
     $user->email = $_POST['email'];
     $user->password = $_POST['password'];
     if ($user->login()) {
-        echo "User Login successfully!.";
+        $_SESSION['id'] = $user->id;
+        $_SESSION['name'] = $user->name;
+        header('Location: dashboard.php');
     } else {
         echo "Unable To Login";
     }
@@ -15,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <html lang="en">
 
 <head>
-    <title>Bootstrap Example</title>
+    <title>Auth Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -27,12 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <body>
 
     <div class="container">
-
         <div class="row justify-content-center">
-
             <div class="col-sm-6 pt-4">
                 <h2>Login form</h2>
-
+                
                 <form action="login.php" method="POST">
                     <div class="form-group">
                         <label for="email">Email:</label>
