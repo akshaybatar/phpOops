@@ -12,6 +12,17 @@ extend('include/header.php');
             <a href="logout" class="btn btn-primary">Logout</a>
 
         </div>
+
+        <?php
+        foreach ($data as $key => $value) {?>
+           
+           <div class="card pt-4">
+
+              <h3><?php echo $value['name'] ?></h3>
+              <h3><?php echo $value['lastname'] ?></h3>
+           </div>
+            <?php }
+        ?>
     </div>
 
 </div>

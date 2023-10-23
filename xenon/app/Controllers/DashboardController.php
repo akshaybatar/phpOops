@@ -7,8 +7,11 @@ class DashboardController
 
     public function index()
     {
-
-       view('dashboard');
+        $data = [
+            ['id' => 1, 'name' => 'Akshay', 'lastname' => 'kumar'],
+            ['id' => 2, 'name' => 'Akshit', 'lastname' => 'chaudhary']
+        ];
+        view('dashboard', ['data' => $data]);
     }
 
     public function logout()

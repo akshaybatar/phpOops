@@ -9,12 +9,12 @@ class LoginController
 
     public function index()
     {
-        $user = new user;
-        $data = $user->fetchSingle('SELECT * FROM users WHERE id=1');
-        echo '<pre>';
-        print_r($data);
-        echo '</pre>';
-        exit();
+        // $user = new user;
+        // $data = $user->fetchSingle('SELECT * FROM users WHERE id=1');
+        // echo '<pre>';
+        // print_r($data);
+        // echo '</pre>';
+        // exit();
         view('auth.login');
     }
 

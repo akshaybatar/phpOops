@@ -7,7 +7,7 @@ function redirect($url)
     exit();
 }
 
-function view($file_path)
+function view($file_path, $data = [])
 {
 
     $path =  str_replace('\\', DIRECTORY_SEPARATOR, $file_path);
@@ -17,16 +17,16 @@ function view($file_path)
     $file = APP_ROOT . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . $path . '.php';
 
     if (file_exists($file)) {
-
+        extract($data);
         return require_once($file);
     } else {
 
-        throw new Exception('The File Path is Not found'. $file);
+        throw new Exception('The File Path is Not found' . $file);
     }
 }
 
-function extend($file_path){
+function extend($file_path)
+{
 
-   include(APP_ROOT.'/view/'.$file_path);
-
+    include(APP_ROOT . '/view/' . $file_path);
 }
